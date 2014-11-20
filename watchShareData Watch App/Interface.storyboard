@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6221" systemVersion="14B25" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3734"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="watchShareData_Watch_App" customModuleProvider="target">
+                    <items>
+                        <slider width="1" alignment="center" value="1" maximum="10" steps="10" id="hYi-V1-ft3">
+                            <connections>
+                                <action selector="doSliderAction:" destination="AgC-eL-Hgc" id="mma-az-Tnu"/>
+                            </connections>
+                        </slider>
+                        <label alignment="center" text="value" id="y7V-Gi-8bW"/>
+                        <button width="1" alignment="left" title="read" id="bha-am-qoy">
+                            <connections>
+                                <action selector="readButtonTouched" destination="AgC-eL-Hgc" id="u1M-F2-t97"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="write" id="eRd-sQ-xn4">
+                            <connections>
+                                <action selector="writeButtonTouched" destination="AgC-eL-Hgc" id="x8j-Fu-JYU"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="read image" id="zeB-cw-d6f">
+                            <connections>
+                                <action selector="readImageButtonTouched" destination="AgC-eL-Hgc" id="cIK-JL-P8v"/>
+                                <segue destination="YPb-Gj-4jf" kind="push" id="CNa-36-fg4"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="labelValue" destination="y7V-Gi-8bW" id="dDa-Xv-ozh"/>
+                        <outlet property="slider" destination="hYi-V1-ft3" id="CXS-ZN-Ses"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="191" y="373"/>
+        </scene>
+        <!--Show Image Interface Controller-->
+        <scene sceneID="CvE-Hg-otE">
+            <objects>
+                <controller id="YPb-Gj-4jf" customClass="showImageInterfaceController" customModule="watchShareData_WatchKit_Extension">
+                    <items>
+                        <imageView alignment="center" verticalAlignment="center" id="1hG-bw-2sD"/>
+                    </items>
+                    <connections>
+                        <outlet property="imageInterface" destination="1hG-bw-2sD" id="Gyd-na-9Gz"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="396" y="276"/>
+        </scene>
+    </scenes>
+</document>
