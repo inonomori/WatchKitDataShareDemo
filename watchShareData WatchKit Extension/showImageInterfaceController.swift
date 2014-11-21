@@ -14,23 +14,21 @@ class showImageInterfaceController: WKInterfaceController {
     @IBOutlet weak var imageInterface: WKInterfaceImage!
     
     override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         
+        let filename = NSUserDefaults(suiteName: groupIdentifier)?.objectForKey("idString") as String
+
         if let dirURL = self.getShareDirURL() {
-            if let userdefault = NSUserDefaults(suiteName: "group.watchShareData.container") {
-                let filename = userdefault.objectForKey("idString") as String
-                if let imageData = NSData(contentsOfURL:dirURL.URLByAppendingPathComponent(filename)) {
-                    if let image = UIImage(data: imageData) {
-                        WKInterfaceDevice.currentDevice().addCachedImage(image,name:filename)
-                        self.imageInterface.setImageNamed(filename)
-                    }
+            if let imageData = NSData(contentsOfURL:dirURL.URLByAppendingPathComponent(filename)) {
+                if let image = UIImage(data: imageData) {
+                    WKInterfaceDevice.currentDevice().addCachedImage(image,name:filename)
                 }
             }
         }
+        self.imageInterface.setImageNamed(filename)
     }
     
     func getShareDirURL() -> NSURL? {
-        return NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.watchShareData.container")
+        return NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(groupIdentifier)
     }
 }

@@ -8,6 +8,8 @@
 
 import UIKit
 
+let groupIdentifier = "group.watchShareData.container"
+
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
     @IBOutlet weak var textField: UITextField!
@@ -46,7 +48,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 if let ext = queryItemExt.value {
                     let fileName = "\(idString).\(ext.lowercaseString)"
                     UIImagePNGRepresentation(originImage).writeToURL(dirURL.URLByAppendingPathComponent(fileName), atomically: true)
-                    if let userdefault = NSUserDefaults(suiteName: "group.watchShareData.container") {
+                    if let userdefault = NSUserDefaults(suiteName: groupIdentifier) {
                         userdefault.setObject(fileName, forKey: "idString")
                         userdefault.synchronize()
                     }
@@ -61,7 +63,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func getShareDirURL()->NSURL?{
-        return NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.watchShareData.container")
+        return NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(groupIdentifier)
     }
 }
 
