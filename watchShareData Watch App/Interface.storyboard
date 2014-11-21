@@ -33,13 +33,27 @@
                             </connections>
                         </button>
                     </items>
+                    <menu key="menu" id="hCi-AD-uUm">
+                        <items>
+                            <menuItem title="相奇 年少时" icon="play" id="PZg-WL-bJg">
+                                <connections>
+                                    <action selector="push1" destination="AgC-eL-Hgc" id="geM-4h-pBa"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="相奇 现在" icon="trash" id="57r-fq-rra">
+                                <connections>
+                                    <action selector="push2" destination="AgC-eL-Hgc" id="zgy-Dl-J3G"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="labelValue" destination="y7V-Gi-8bW" id="dDa-Xv-ozh"/>
                         <outlet property="slider" destination="hYi-V1-ft3" id="CXS-ZN-Ses"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="191" y="373"/>
+            <point key="canvasLocation" x="152" y="287.25"/>
         </scene>
         <!--Show Image Interface Controller-->
         <scene sceneID="CvE-Hg-otE">
@@ -54,6 +68,28 @@
                 </controller>
             </objects>
             <point key="canvasLocation" x="396" y="276"/>
+        </scene>
+        <!--ic1002-->
+        <scene sceneID="bUu-KL-2wO">
+            <objects>
+                <controller identifier="ic1002" id="bOK-3y-Nxz">
+                    <items>
+                        <imageView alignment="center" verticalAlignment="center" image="321.png" id="aKY-GQ-BVa"/>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="169" y="622"/>
+        </scene>
+        <!--ic1001-->
+        <scene sceneID="UUD-hS-3ot">
+            <objects>
+                <controller identifier="ic1001" id="WpT-GO-Dvd">
+                    <items>
+                        <imageView alignment="center" verticalAlignment="center" image="232.png" id="Hkz-dk-NMs"/>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="330" y="526"/>
         </scene>
     </scenes>
 </document>

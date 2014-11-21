@@ -18,8 +18,14 @@ class showImageInterfaceController: WKInterfaceController {
         super.willActivate()
         
         if let dirURL = self.getShareDirURL() {
-            if let imageData = NSData(contentsOfURL:dirURL.URLByAppendingPathComponent("image.png")) {
-                self.imageInterface.setImage(UIImage(data: imageData))
+            if let userdefault = NSUserDefaults(suiteName: "group.watchShareData.container") {
+                let filename = userdefault.objectForKey("idString") as String
+                if let imageData = NSData(contentsOfURL:dirURL.URLByAppendingPathComponent(filename)) {
+                    if let image = UIImage(data: imageData) {
+                        WKInterfaceDevice.currentDevice().addCachedImage(image,name:filename)
+                        self.imageInterface.setImageNamed(filename)
+                    }
+                }
             }
         }
     }

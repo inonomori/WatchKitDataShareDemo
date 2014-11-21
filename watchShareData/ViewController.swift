@@ -33,9 +33,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.presentViewController(self.imagePicker, animated: true, completion: nil)
     }
     
-    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        if let dirURL = self.getShareDirURL() {
-            UIImagePNGRepresentation(image).writeToURL(dirURL.URLByAppendingPathComponent("image.png"), atomically: true)
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        let mediaURL = info[(UIImagePickerControllerReferenceURL as NSObject)] as NSURL
+        let originImage = info[(UIImagePickerControllerOriginalImage as NSObject)] as UIImage
+        
+        let mediaURLComponent = NSURLComponents(URL: mediaURL, resolvingAgainstBaseURL: false)
+        
+        let queryItemID = mediaURLComponent?.queryItems?[0] as NSURLQueryItem
+        if let idString = queryItemID.value {
+            if let dirURL = self.getShareDirURL() {
+                let queryItemExt = mediaURLComponent?.queryItems?[1] as NSURLQueryItem
+                if let ext = queryItemExt.value {
+                    let fileName = "\(idString).\(ext.lowercaseString)"
+                    UIImagePNGRepresentation(originImage).writeToURL(dirURL.URLByAppendingPathComponent(fileName), atomically: true)
+                    if let userdefault = NSUserDefaults(suiteName: "group.watchShareData.container") {
+                        userdefault.setObject(fileName, forKey: "idString")
+                        userdefault.synchronize()
+                    }
+                }
+            }
         }
         self.dismissViewControllerAnimated(true, completion: nil)
     }

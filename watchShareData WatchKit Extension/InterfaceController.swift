@@ -47,4 +47,10 @@ class InterfaceController: WKInterfaceController {
         self.labelValue.setText("\(Int(value))")
         self.sliderValue = value
     }
+    @IBAction func push1() {
+        self.pushControllerWithName("ic1001", context: nil)
+    }
+    @IBAction func push2() {
+        self.pushControllerWithName("ic1002", context: nil)
+    }
 }
